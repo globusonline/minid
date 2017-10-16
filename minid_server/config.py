@@ -20,8 +20,8 @@ class BaseConfig(object):
     TEST_EZID_USERNAME = "apitest"
     TEST_EZID_PASSWORD = "apitest"
 
-    AWS_ACCESS_KEY_ID = ""
-    AWS_SECRET_ACCESS_KEY = ""
+    AWS_ACCESS_KEY_ID = "AKIAJ3TLYPFSIPJKFY3Q"
+    AWS_SECRET_ACCESS_KEY = "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"
 
 class ProdConfig(BaseConfig):
     DEBUG = False
@@ -44,5 +44,5 @@ class ProdConfig(BaseConfig):
     TEST_EZID_USERNAME = "apitest"
     TEST_EZID_PASSWORD = "apitest"
 
-    AWS_ACCESS_KEY_ID = ""
-    AWS_SECRET_ACCESS_KEY = ""
+    AWS_ACCESS_KEY_ID = "AKIAJ3TLYPFSIPJKFY3Q"
+    AWS_SECRET_ACCESS_KEY = "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"

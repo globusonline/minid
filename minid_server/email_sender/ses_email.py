@@ -11,7 +11,7 @@ class SESEmail:
     def send_email(self, address, code):
         print("Sending %s to %s" % (code, address))
         self. conn.send_email(
-            'info@minid.bd2k.org',
+            'nick@globus.org',
             'Minid registration code',
             'Your minid registration code is: %s\n\nCopy this code and put it in your minid configuration file.' % code,
         [address])
