@@ -203,7 +203,7 @@ def update_entity(path):
 # }
 
 
-@app.route('/minid', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def create_entity():
     if request.method == 'GET':
         return render_template("index.html")
