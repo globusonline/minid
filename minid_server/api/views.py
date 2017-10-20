@@ -40,7 +40,10 @@ def create_ark(creator, title, created, test):
     return response["identifier"]
 
 def find_user(email, code):
-    user = Miniduser.query.filter_by(email=email, code=code).first()
+    if code in app.config.get('SERVICE_TOKENS', []):
+        user = Miniduser.query.filter_by(email=email).first()
+    else:
+        user = Miniduser.query.filter_by(email=email, code=code).first()
     if not user:
         print("User %s with code %s doesn't exist." % (email, code))
         abort(400)
