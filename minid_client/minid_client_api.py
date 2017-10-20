@@ -116,13 +116,19 @@ def print_entities(entities, as_json):
         print_entity(entity, as_json)
         print("\n")
 
-def register_user(server, email, name, orcid):
+def register_user(server, email, name, orcid, server_token=""):
     logger.info("Registering new user \"%s\" with email \"%s\"%s" %
                 (name, email, format(" and orcid \"%s\"" % orcid) if orcid else ""))
-    user = {"name": name, "email": email}
+    user = {"name": name, "email": email, "server_token": server_token}
     if orcid:
         user["orcid"] = orcid
     r = requests.post("%s/user" % server, json=user, headers={"Content-Type": "application/json"})
+    return r.json()
+
+
+def get_user(server, email):
+    logger.info("Searching for user %s" % email)
+    r = requests.get('%s/user' % server, json={"email": email}, headers={"Content-Type": "application/json"})
     return r.json()
 
 

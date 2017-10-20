@@ -4,7 +4,7 @@ class BaseConfig(object):
     
     SQLALCHEMY_DATABASE_URI = "sqlite:////tmp/minid.db"
 
-    HOSTNAME = "http://localhost:5000/minid"
+    HOSTNAME = "http://localhost:5000/"
     LANDING_PAGE = "http://localhost:5000/minid/landingpage"
 
     EZID_SERVER =  "https://ezid.cdlib.org"
@@ -12,6 +12,8 @@ class BaseConfig(object):
     EZID_SHOULDER = "99999/fk4"
     EZID_USERNAME = "apitest"
     EZID_PASSWORD = "apitest"
+
+    SERVICE_TOKENS = ['']
 
 
     TEST_EZID_SERVER =  "https://ezid.cdlib.org"

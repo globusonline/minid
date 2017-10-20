@@ -40,12 +40,17 @@ def create_ark(creator, title, created, test):
     return response["identifier"]
 
 def find_user(email, code):
+    user = None
     if code in app.config.get('SERVICE_TOKENS', []):
         user = Miniduser.query.filter_by(email=email).first()
+        if not user:
+            user = Miniduser(name, "", email, code)
+            db.session.add(user)
     else:
         user = Miniduser.query.filter_by(email=email, code=code).first()
     if not user:
-        print("User %s with code %s doesn't exist." % (email, code))
+        print("User %s with code %s doesn't exist, and code is not a service "
+              "token" % (email, code))
         abort(400)
     return user
 
@@ -268,14 +273,29 @@ def create_entity():
     return jsonify({'identifier': entity.identifier}), 201
 
 
+def _get_user():
+    email = request.args.get('email')
+    if not email:
+        return jsonify({'error': '"email" is a required field.'}), 400
+    user = Miniduser.query.filter_by(email=email).first()
+    if user:
+        return jsonify(user.get_json()), 200
+    else:
+        return jsonify({'error': 'User not found'}), 404
+
+
 # Register a new user.. 
 # {
 #  name: xxx
 #  email: xxx
 #  orcid: xx
 # }
-@app.route('/user', methods=['POST','PUT'])
+@app.route('/user', methods=['GET','POST','PUT'])
 def register_user():
+
+    if request.method == "GET":
+        return _get_user()
+
     if not request.json:
         print("Request is not JSON")
         abort(400)
@@ -291,6 +311,7 @@ def register_user():
     code = str(uuid.uuid4())
 
     user = Miniduser.query.filter_by(email=email).first()
+
     if user is None: 
         user = Miniduser(name, orcid, email, code)
         db.session.add(user)
@@ -301,7 +322,8 @@ def register_user():
         user.code = code
 
     db.session.commit()
-    
-    minid_email.send_email(email, code)
+
+    if not request.json.get("server_token"):
+        minid_email.send_email(email, code)
 
     return jsonify(user.get_json()), 201
