@@ -1,4 +1,4 @@
-class BaseConfig(object):
+class Config(object):
     DEBUG = True
     TESTING = True
     
@@ -22,29 +22,7 @@ class BaseConfig(object):
     TEST_EZID_USERNAME = "apitest"
     TEST_EZID_PASSWORD = "apitest"
 
-    AWS_ACCESS_KEY_ID = "AKIAJ3TLYPFSIPJKFY3Q"
-    AWS_SECRET_ACCESS_KEY = "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"
+    AWS_ACCESS_KEY_ID = ""
+    AWS_SECRET_ACCESS_KEY = ""
 
-class ProdConfig(BaseConfig):
-    DEBUG = False
-    TESTING = False
 
-    SQLALCHEMY_DATABASE_URI = "<DATABASE_URL>"
-    
-    HOSTNAME = "<HOSTNAME>"
-    LANDING_PAGE = "<LANDING_PAGE>"
-
-    EZID_SERVER =  ""
-    EZID_SCHEME = ""
-    EZID_SHOULDER = ""
-    EZID_USERNAME = ""
-    EZID_PASSWORD = ""
-
-    TEST_EZID_SERVER =  "https://ezid.cdlib.org"
-    TEST_EZID_SCHEME = "ark:/"
-    TEST_EZID_SHOULDER = "99999/fk4"
-    TEST_EZID_USERNAME = "apitest"
-    TEST_EZID_PASSWORD = "apitest"
-
-    AWS_ACCESS_KEY_ID = "AKIAJ3TLYPFSIPJKFY3Q"
-    AWS_SECRET_ACCESS_KEY = "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"
