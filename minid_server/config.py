@@ -3,6 +3,7 @@ class Config(object):
     TESTING = True
     
     SQLALCHEMY_DATABASE_URI = "sqlite:////tmp/minid.db"
+    SQLALCHEMY_TRACK_MODIFICATIONS = True
 
     HOSTNAME = "http://localhost:5000/"
     LANDING_PAGE = "http://localhost:5000/minid/landingpage"
