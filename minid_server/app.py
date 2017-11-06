@@ -1,7 +1,7 @@
 #!flask/bin/python
 import os
 from flask import Flask
-from flask.ext.sqlalchemy import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy
 from email_sender import SESEmail
 
 app = Flask(__name__)
@@ -14,4 +14,3 @@ else:
 db = SQLAlchemy(app)
 minid_email = SESEmail(app)
 
-print("Running")
