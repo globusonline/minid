@@ -87,13 +87,13 @@ def main():
                                 args.code if args.code else config["code"],
                                 locations, args.title, args.test, args.content_key)
     elif args.update:
-        if entities is None:
+        if not entities:
             print("No entity found to update. You must use a valid minid.")
             return
         elif len(entities) > 1:
             print("More than one minid identified. Please use a minid identifier")
         else:
-            entity = entities.values()[0]
+            entity = list(entities.values())[0]
             if args.status:
                 entity['status'] = args.status
             if args.obsoleted_by:
